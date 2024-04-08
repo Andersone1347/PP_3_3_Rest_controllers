@@ -47,8 +47,8 @@ public class AdminController {
     }
 
     @PostMapping(value = "/new")
-    public String add(@ModelAttribute("user") User user, @RequestParam(value = "userId", required = false) List<Long> userId) {
-            Set<Role> role = rs.findAllRoleId(userId);
+    public String add(@ModelAttribute("user") User user, @RequestParam(name = "id", required = false) List<Long> id) {
+            Set<Role> role = rs.findAllRoleId(id);
             user.setRoles(role);
             us.addUser(user);
             return "redirect:/admin";
@@ -59,11 +59,6 @@ public class AdminController {
         us.deleteUser(id);
         return "redirect:/admin";
     }
-//    @PostMapping(value = "/delete")
-//    public String delete(@RequestParam("id") Long id) {
-//        us.deleteUser(id);
-//        return "redirect:/admin";
-//    }
 
 
     @GetMapping(value = "/update/{id}")
@@ -74,8 +69,8 @@ public class AdminController {
     }
 
     @PatchMapping(value = "/update")
-    public String update(@ModelAttribute("user") User user,@RequestParam(value = "userId", required = false) List<Long> userId) {
-            Set<Role> role = rs.findAllRoleId(userId);
+    public String update(@ModelAttribute("user") User user,@RequestParam(name = "id", required = false) List<Long> id) {
+            Set<Role> role = rs.findAllRoleId(id);
             user.setRoles(role);
             us.updateUser(user);
             return "redirect:/admin";

@@ -17,9 +17,12 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository ur;
 
-    @Lazy
-    @Autowired
     private PasswordEncoder pe;
+
+    @Autowired
+    public void setPasswordEncoder(@Lazy PasswordEncoder passwordEncoder) {
+        this.pe = passwordEncoder;
+    }
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository) {
@@ -27,7 +30,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
     public List<User> getListUsers() {
         return ur.findAll();
     }
@@ -40,26 +42,22 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
     public User getUser(Long id) {
         return ur.getById(id);
     }
-
-    @Override
     @Transactional
+    @Override
     public void updateUser(User user) {
         user.setPassword(pe.encode(user.getPassword()));
         ur.updateUser(user);
     }
 
     @Override
-    @Transactional
     public User getUserByUsername(String username) {
         return ur.findByUsername(username);
     }
-
-    @Override
     @Transactional
+    @Override
     public void deleteUser(Long id) {
         ur.deleteById(id);
     }

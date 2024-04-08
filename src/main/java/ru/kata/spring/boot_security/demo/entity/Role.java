@@ -17,13 +17,12 @@ public class Role implements GrantedAuthority {
     @Column(name = "role_id")
     private Long roleId;
 
-    @Column(name = "role_name")
+    @Column(name = "role_name",unique = true)
     private String roleName;
 
     @Transient
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "roles")
     private Set<User> userSet = new HashSet<>();
-
 
     public Role() {
 

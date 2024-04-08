@@ -12,8 +12,12 @@ import java.util.Set;
 
 @Repository
 public class RoleRepositoriesImpl implements RoleRepository {
+    private EntityManager em;
+
     @PersistenceContext
-    EntityManager em;
+    public void setEm(EntityManager em) {
+        this.em = em;
+    }
 
     @Override
     public List<Role> findAll() {

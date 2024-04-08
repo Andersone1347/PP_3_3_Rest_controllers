@@ -20,7 +20,6 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    @Transactional
     public List<Role> getAllRoles() {
         return rs.findAll();
     }
@@ -32,14 +31,12 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    @Transactional
     public Role getRoleById(Long id) {
         return rs.getById(id);
     }
 
     @Override
-    @Transactional
-    public Set<Role> findAllRoleId(List<Long> userId) {
-        return rs.findAllId(userId);
+    public Set<Role> findAllRoleId(List<Long> id) {
+        return rs.findAllId(id);
     }
 }

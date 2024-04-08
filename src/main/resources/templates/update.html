@@ -33,7 +33,7 @@
                     <label>Change role:
                     <div th:each="role : ${allRoles}">
                         <input type="checkbox"
-                               th:name="userId"
+                               th:name="id"
                                th:value="${role.roleId}"
                                th:id="${'role'+role.roleId}" />
                         <label th:for="${'role'+role.roleId}" th:text="${role.roleName}"></label>
