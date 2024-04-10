@@ -13,6 +13,6 @@ public interface RoleService {
 
     Role getRoleById(Long id);
 
-    Set<Role> findAllRoleId(List<Long> userId);
+    Set<Role> findAllRoleId(List<Long> id);
 
 }

@@ -24,4 +24,10 @@ public class UserController {
         model.addAttribute("user", us.getUserByUsername(principal.getName()));
         return "/user";
     }
+
+    @GetMapping("/form")
+    public String getUser(Principal principal, Model model ) {
+        model.addAttribute("user", us.getUserByUsername(principal.getName()));
+        return "/user_form";
+    }
 }
