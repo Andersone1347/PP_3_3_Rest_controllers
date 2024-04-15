@@ -3,10 +3,8 @@ package ru.kata.spring.boot_security.demo.entity;
 import org.springframework.security.core.GrantedAuthority;
 
 import jakarta.persistence.*;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
 
+import java.util.Objects;
 
 @Entity
 @Table(name = "roles")
@@ -19,10 +17,6 @@ public class Role implements GrantedAuthority {
 
     @Column(name = "role_name",unique = true)
     private String roleName;
-
-    @Transient
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "roles")
-    private Set<User> userSet = new HashSet<>();
 
     public Role() {
 
@@ -52,27 +46,18 @@ public class Role implements GrantedAuthority {
         this.roleName = roleName;
     }
 
-    public Set<User> getUserSet() {
-        return userSet;
-    }
-
-    public void setUserSet(Set<User> userSet) {
-        this.userSet = userSet;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Role role = (Role) o;
-        return Objects.equals(roleId, role.roleId) && Objects.equals(roleName, role.roleName) && Objects.equals(userSet, role.userSet);
+        return Objects.equals(roleId, role.roleId) && Objects.equals(roleName, role.roleName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(roleId, roleName, userSet);
+        return Objects.hash(roleId, roleName);
     }
-
 
     @Override
     public String getAuthority() {
