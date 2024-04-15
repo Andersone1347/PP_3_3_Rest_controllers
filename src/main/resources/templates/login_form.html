@@ -8,8 +8,8 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <style>
-    .form-group-custom{
-        margin-bottom: 4px;
+    .form-group-custom {
+        margin: 0;
     }
 </style>
 <body>
@@ -18,25 +18,25 @@
     <div class="row">
         <div class="col-md-4 offset-md-4">
 
-                <div class="card-body">
-                    <h4 class="text-center">Please sign in</h4>
-                    <form action="/login" method="post">
-                        <div class="form-group form-group-custom ">
-                            <label for="username"></label>
-                            <input type="text" class="form-control" id="username" name="username" aria-describedby="userHelp" placeholder="Enter Username">
-                            <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password">
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-block">Sign in</button>
-                    </form>
-                </div>
+            <div class="card-body">
+                <h4 class="text-center">Please sign in</h4>
+                <form action="/login" method="post">
+                    <div class="form-group form-group-custom ">
+                        <label for="username"></label>
+                        <input type="text" class="form-control" id="username" name="username"
+                               aria-describedby="userHelp" autocomplete="username" placeholder="Enter Username">
+                        <input type="password" class="form-control" id="password" autocomplete="current-password" name="password"
+                               placeholder="Enter Password">
+                        <label for="password"> </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+                </form>
+                <div id="message"></div>
+            </div>
 
         </div>
     </div>
 </div>
-
-<!-- Подключаем jQuery и Bootstrap JS -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
 </body>
 </html>

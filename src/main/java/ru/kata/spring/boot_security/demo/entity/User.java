@@ -1,16 +1,23 @@
 package ru.kata.spring.boot_security.demo.entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+
+import ru.kata.spring.boot_security.demo.serialization.CustomUserDeserializer;
+import ru.kata.spring.boot_security.demo.serialization.CustomUserSerializer;
+
 import java.util.Collection;
 import java.util.Set;
 
 @Entity
 @Table(name = "users")
+@JsonSerialize (using = CustomUserSerializer.class)
 public class User implements UserDetails {
 
     @Id
@@ -21,7 +28,7 @@ public class User implements UserDetails {
     private String name;
 
     @Column(name = "lastname")
-    private String lastName;
+    private String lastname;
 
     @Column(name = "username",unique = true)
     private String username;
@@ -39,9 +46,9 @@ public class User implements UserDetails {
     private Set<Role> roles;
 
 
-    public User(String name, String lastName, String username, String password, Set<Role> roles) {
+    public User(String name, String lastname, String username, String password, Set<Role> roles) {
         this.name = name;
-        this.lastName = lastName;
+        this.lastname = lastname;
         this.username = username;
         this.password = password;
         this.roles = roles;
@@ -67,12 +74,12 @@ public class User implements UserDetails {
         this.name = name;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public Set<Role> getRoles() {

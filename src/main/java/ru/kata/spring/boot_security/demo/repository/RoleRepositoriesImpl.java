@@ -4,8 +4,8 @@ import org.springframework.stereotype.Repository;
 import ru.kata.spring.boot_security.demo.entity.Role;
 
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
