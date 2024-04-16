@@ -1,4 +1,4 @@
-const url = "http://localhost:8080/api/";
+const url = "http://localhost:8080/api/admin/";
 const renderTable = document.getElementById("user-data");
 const addForm = document.getElementById("add-form");
 
@@ -227,7 +227,7 @@ async function editUser() {
     }
 }
 
-const urlAuth = "http://localhost:8080/api/auth";
+const urlAuth = "http://localhost:8080/api/admin";
 const data = document.getElementById("data-user");
 const panel = document.getElementById("admin-panel");
 

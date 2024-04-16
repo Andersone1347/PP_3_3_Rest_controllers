@@ -1,5 +1,5 @@
 const data = document.getElementById("data-user");
-const url = "http://localhost:8080/api/auth";
+const url = "http://localhost:8080/api/user";
 const panel = document.getElementById("user-panel");
 
 function userAuthInfo() {
