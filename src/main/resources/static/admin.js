@@ -358,3 +358,46 @@ function clearEditFormValidationErrors() {
     const existingErrors = document.querySelectorAll('#modalEdit .edit-form-error-message');
     existingErrors.forEach(errorDiv => errorDiv.remove());
 }
+
+function loadRoles() {
+    fetch('http://localhost:8080/api/roles')
+        .then(res => res.json())
+        .then(data => {
+            displayRoles(data);
+        })
+        .catch(err => console.error("Ошибка при загрузке ролей:", err));
+}
+
+function displayRoles(roles) {
+    const rolesContainer = document.getElementById("roles-checkboxes-container"); // Предполагаем, что у вас есть контейнер для чекбоксов
+
+    // Очистка предыдущих чекбоксов
+    rolesContainer.innerHTML = '';
+
+    roles.forEach(role => {
+        const checkboxWrapper = document.createElement("div");
+        checkboxWrapper.className = "form-check";
+
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.className = "form-check-input roleCheckbox";
+        checkbox.value = role.id;
+        checkbox.id = `role-${role.id}`;
+
+        const label = document.createElement("label");
+        label.className = "form-check-label";
+        label.htmlFor = `role-${role.id}`;
+        label.textContent = role.roleName.replace('ROLE_', '');
+
+        checkboxWrapper.appendChild(checkbox);
+        checkboxWrapper.appendChild(label);
+
+        rolesContainer.appendChild(checkboxWrapper);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    loadRoles(); // Загрузка и отображение ролей при загрузке страницы
+    // Ваши другие инициализации...
+});
+
