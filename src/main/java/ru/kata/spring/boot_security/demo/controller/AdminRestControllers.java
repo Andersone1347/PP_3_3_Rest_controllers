@@ -5,7 +5,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import ru.kata.spring.boot_security.demo.entity.Role;
 import ru.kata.spring.boot_security.demo.entity.User;
+import ru.kata.spring.boot_security.demo.service.RoleService;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
 import java.security.Principal;
@@ -19,9 +21,12 @@ public class AdminRestControllers {
 
     private final UserService us;
 
+    private final RoleService rs;
+
     @Autowired
-    public AdminRestControllers(UserService userServices) {
+    public AdminRestControllers(UserService userServices, RoleService rs) {
         this.us = userServices;
+        this.rs = rs;
     }
 
     @GetMapping
@@ -58,4 +63,13 @@ public class AdminRestControllers {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping("/roles")
+    public ResponseEntity<List<Role>> getAllRoles() {
+        List<Role> roles = rs.getAllRoles();
+        if (roles.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.ok(roles);
+        }
+    }
 }

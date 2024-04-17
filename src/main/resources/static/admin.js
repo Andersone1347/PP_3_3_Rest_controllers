@@ -359,13 +359,33 @@ function clearEditFormValidationErrors() {
     existingErrors.forEach(errorDiv => errorDiv.remove());
 }
 
+// function loadRoles() {
+//     fetch('http://localhost:8080/api/roles')
+//         .then(res => res.json())
+//         .then(data => {
+//             displayRoles(data);
+//         })
+//         .catch(err => console.error("Ошибка при загрузке ролей:", err));
+// }
+
 function loadRoles() {
-    fetch('http://localhost:8080/api/roles')
-        .then(res => res.json())
-        .then(data => {
-            displayRoles(data);
+    fetch('http://localhost:8080/api/admin/roles') // Проверьте правильность URL для получения списка ролей
+        .then(response => response.json())
+        .then(roles => {
+            rolesContainer.innerHTML = ''; // Очищаем предыдущие чекбоксы
+            roles.forEach(role => {
+                let label = document.createElement('label');
+                label.className = 'form-check-label';
+                let checkbox = document.createElement('input');
+                checkbox.type = "checkbox";
+                checkbox.className = "form-check-input roleCheckbox";
+                checkbox.value = role.id;
+                label.appendChild(checkbox);
+                label.append(role.name.replace('ROLE_', ''));
+                rolesContainer.appendChild(label);
+            });
         })
-        .catch(err => console.error("Ошибка при загрузке ролей:", err));
+        .catch(error => console.error('Ошибка при загрузке ролей:', error));
 }
 
 function displayRoles(roles) {
@@ -396,8 +416,5 @@ function displayRoles(roles) {
     });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    loadRoles(); // Загрузка и отображение ролей при загрузке страницы
-    // Ваши другие инициализации...
-});
+document.addEventListener('DOMContentLoaded', loadRoles);
 

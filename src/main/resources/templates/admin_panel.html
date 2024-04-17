@@ -115,18 +115,23 @@
                                                                name="password" required>
                                                         <br/>
                                                     </div>
-                                                    <label class="font-weight-bold" id="addRoles">Role</label>
-                                                    <div>
-                                                        <input type="checkbox" class="roleCheckbox" id="adminCheckbox"
-                                                               name="role"
-                                                               value="1">
-                                                        <label for="adminCheckbox">ADMIN</label>
 
-                                                        <input type="checkbox" class="roleCheckbox" id="userCheckbox"
-                                                               name="role"
-                                                               value="2">
-                                                        <label for="userCheckbox">USER</label>
+                                                    <div class="form-group">
+                                                        <label for="roles-container" class="font-weight-bold">Roles</label>
+                                                        <div id="roles-container">
+                                                            <!-- Здесь будут динамически добавлены чекбоксы для ролей -->
+                                                            <input type="checkbox" class="roleCheckbox" id="adminCheckbox"
+                                                                   name="role"
+                                                                   value="1">
+                                                            <label for="adminCheckbox">ADMIN</label>
+
+                                                            <input type="checkbox" class="roleCheckbox" id="userCheckbox"
+                                                                   name="role"
+                                                                   value="2">
+                                                            <label for="userCheckbox">USER</label>
+                                                        </div>
                                                     </div>
+
                                                     <button type="submit" class="btn btn-success">Add new user</button>
                                                 </form>
                                             </div>
